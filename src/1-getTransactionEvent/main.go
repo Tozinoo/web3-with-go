@@ -1,9 +1,9 @@
 package main
 
 import (
+	"1-getTransactionEvent/getEvent"
 	"context"
 	"fmt"
-	"getTransactionEvent/getEvent"
 	"log"
 
 	"github.com/ethereum/go-ethereum/common"
