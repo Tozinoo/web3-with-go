@@ -5,13 +5,23 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	client, err := ethclient.Dial("https://sepolia.infura.io/v3/0dc3f69ff69e4548ad9b70ae0f18d837")
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading .env file")
+	}
+
+	infuraApiKey := os.Getenv("INFURA_API_KEY")
+	ethClientUrl := "https://sepolia.infura.io/v3/" + infuraApiKey
+
+	client, err := ethclient.Dial(ethClientUrl)
 
 	if err != nil {
 		fmt.Println("Error connecting to Ethereum network:", err)
